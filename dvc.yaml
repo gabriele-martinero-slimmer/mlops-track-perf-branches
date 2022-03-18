@@ -9,18 +9,15 @@ stages:
   process:
     cmd: python x2_process_data.py
     deps:
-    - x2_process_data.py
     - test.csv
     - train.csv
+    - x2_process_data.py
     outs:
     - data_processed.csv
   train:
-    cmd: python x3_train.py
+    cmd: python x3_train.py -m metrics.json
     deps:
-    - x3_train.py
     - data_processed.csv
+    - x3_train.py
     outs:
     - ROC.png
-    metrics:
-    - metrics.json:
-        cache: false
